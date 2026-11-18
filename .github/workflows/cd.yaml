@@ -71,6 +71,15 @@ jobs:
       - name: Apply
         run: terraform apply -input=false tfplan
 
+      # Kopia zapasowa stanu - gdyby push się nie udał, stan nie przepada razem z runnerem.
+      - name: Backup state
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfstate-${{ github.run_id }}
+          path: terraform.tfstate
+          retention-days: 7
+
       # Stan jest w repo, więc zapisujemy go także po nieudanym apply (część zasobów mogła powstać).
       - name: Commit state
         if: always()

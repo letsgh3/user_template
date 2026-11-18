@@ -39,6 +39,7 @@ Odpowiadaj po polsku, zwięźle.
 
 ## Komendy
 
+
 ```bash
 source ~/.tf-training/studentNN.env   # w każdej nowej sesji terminala (nie czytaj tego pliku)
 terraform init
